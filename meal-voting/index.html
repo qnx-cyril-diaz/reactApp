@@ -1,0 +1,156 @@
+<!-- INSERT BOILER PLATE CODE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- REACT LIBRARY -->
+  <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+  <!-- REACT DOM LIBRARY -->
+  <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+  <!-- BABEL LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+  <title>Let's React!</title>
+</head>
+<body>
+
+  <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
+  <div id="app">React has not rendered yet</div>
+
+  
+  <!-- JAVASCRIPT -->
+<script type="text/babel">
+
+class DinnerVote extends React.Component{
+    render(){
+        var food = this.props.food;
+        var foodMap = food.map(function(foody){
+            var style = {
+                        width: 250,
+                        display: "inline-block",
+                        height: 410,
+                        padding: 0,
+                        margin:35,
+                        backgroundColor: "#FFF",
+                        WebkitFilter: "drop-shadow( 0px 0px 5px #555)",
+                        filter: "drop-shadow( 0px 0px 5px #555)"
+            }
+            return(
+                <div key= {foody.id} style={style} >
+                    <Image img= {foody.img}/>    
+                    <Profile profile={foody.profile} /> 
+                    <Vote />
+                </div>
+            );
+        });
+        
+        return(  
+            <div>  
+                {foodMap}
+            </div>
+         );
+    }
+   }
+
+class Image extends React.Component{
+    render(){
+        var imgStyle = {
+                display: "block",
+                margin: "auto", 
+                marginTop: 20,
+                width: 150,
+                height: 150
+            }
+        return(
+            <img src={this.props.img} style={imgStyle} alt="food" />
+        )
+    }
+}
+
+class Profile extends React.Component{
+    render(){
+        var styleProf = {
+            fontSize: 25,
+            textAlign: "center"
+        }
+        return(
+            <p style= {styleProf}>{this.props.profile}</p>
+        );
+    }
+}
+
+class Vote extends React.Component{
+    render(){
+        return(
+            <div>
+                <Total />
+            </div>
+        );
+    }
+}
+
+
+class Total extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            vote: 0
+        };
+        this.onButtonAdd = this.onButtonAdd.bind(this);
+        this.onButtonSubtract = this.onButtonSubtract.bind(this);
+    }
+    onButtonAdd(){
+        this.setState({
+         vote: this.state.vote + 1
+        });
+    }
+
+    onButtonSubtract(){
+        this.setState({
+         vote: this.state.vote - 1
+        });
+    }
+
+    render(){
+        var style = {
+            fontSize: 15,
+            textAlign: "center"
+        }
+        return(
+            <div style={style}>
+                <button onClick={this.onButtonAdd} >Like +1</button><br/>
+                <button onClick={this.onButtonSubtract} >UnLike -1</button>
+                <p>Total : {this.state.vote} </p>
+            </div>
+        );
+    }
+}
+
+    // RENDER REACT TO THE DOM - WILL ACCEPT TWO ARGUMENTS (REACT WHAT, REACT WHERE)
+var food =[
+    {
+        id: 1,
+        img: "https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&h=350",
+        profile: "Beef Lamb"
+    },
+    {
+        id: 2,
+        img: "https://images.pexels.com/photos/1027810/pexels-photo-1027810.jpeg?auto=compress&cs=tinysrgb&h=350",
+        profile: "Crispy Pata"
+    },
+    {
+        id: 3,
+        img: "https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1492688483000/photosp/ffd52b5d-95da-4f59-a006-c933e6484fc8/stock-photo-bread-food-kitchen-fork-delicious-thanksgiving-pork-thanks-giving-susages-ffd52b5d-95da-4f59-a006-c933e6484fc8.jpg",
+        profile: "Porkchop"
+    }]    
+ReactDOM.render(
+    <DinnerVote food={food}/>,
+    document.getElementById("app")
+);
+    
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    
+    <title>Class Component</title>
+</head>
+<body>
+      <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
+  <div id="app">React has not rendered yet</div>
+
+  
+  <!-- JAVASCRIPT -->
+  <script type="text/babel">
+        // component
+    
+    class  Shapes extends React.Component {
+        render(){ 
+            return(
+                <div>
+                    <Circle/>
+                    <Square/>
+                    <Rectangle/>
+                </div>
+            );
+        }
+    }
+
+    class Circle extends React.Component {
+        render(){
+            var circle = {
+                width:100,
+                height: 100,
+                background:"red",
+                borderRadius: "50%"
+            }
+            return(
+                <h1 style={circle}>Circle</h1>
+            );
+        }
+    }
+
+    class Square extends React.Component{
+        render(){
+            var square = {
+                width:100,
+                height: 100,
+                background:"red"
+            }
+            return (
+                <h1 style={square}>Square</h1>
+            );
+        }
+    }
+
+    class Rectangle extends React.Component{
+        render(){
+            var rectangle = {
+                width:100,
+                height: 200,
+                background:"red"
+            }
+            return(
+                <h1 style={rectangle}>Rectangle</h1>
+            );
+        }
+    }
+
+
+    // RENDER REACT TO THE DOM - WILL ACCEPT TWO ARGUMENTS (REACT WHAT, REACT WHERE)
+    ReactDOM.render(
+        <Shapes/>
+      ,
+      document.getElementById("app")
+      
+    );
+  </script>  
+</body>
+</html>
